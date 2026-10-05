@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    font-feature-settings: 'tnum' 1;
+  }
+  :focus-visible {
+    outline: 2px solid theme('colors.loot');
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: theme('colors.loot');
+    color: theme('colors.storm.950');
+  }
+}
+
+@layer components {
+  /* Skewed halves used by the versus band */
+  .cut-left {
+    clip-path: polygon(0 0, 100% 0, calc(100% - 2.25rem) 100%, 0 100%);
+  }
+  .cut-right {
+    clip-path: polygon(2.25rem 0, 100% 0, 100% 100%, 0 100%);
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-loot {
+    @apply btn bg-loot text-storm-950 hover:bg-[#FFD36E];
+  }
+  .btn-ghost {
+    @apply btn border border-storm-600 text-ice hover:border-haze hover:bg-storm-800;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
